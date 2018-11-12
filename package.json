@@ -1,0 +1,21 @@
+{
+  "name": "sein-redis",
+  "version": "1.0.0",
+  "description": "A npm module that provides secondary indexing for Redis\",",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Redis"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.1.0",
+    "lodash": "^4.17.11"
+  }
+}
