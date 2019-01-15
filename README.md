@@ -63,6 +63,5 @@ user = await userModel.getByEmail('testuser@tests.com');
 const users = await userModel.getByType(1);
 ```
 
-#Licence
-
+# Licence
 MIT
