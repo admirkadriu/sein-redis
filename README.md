@@ -51,14 +51,14 @@ class UserModel extends seinRedis.Model {
 
 const isSet = await userModel.set({
                       id: 'd982398j2398u',
-                      name: 'Test2 User',
-                      email: 'test2user@tests.com',
+                      name: 'Test User',
+                      email: 'testuser@tests.com',
                       typeId: 1,
                     });
 
-let user = await userModel.get('21e332e1e21');
+let user = await userModel.get('d982398j2398u');
 
-user = await userModel.getByEmail('test1user@tests.com');
+user = await userModel.getByEmail('testuser@tests.com');
 
 const users = await userModel.getByType(1);
 ```
