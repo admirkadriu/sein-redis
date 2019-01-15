@@ -64,4 +64,5 @@ const users = await userModel.getByType(1);
 ```
 
 #Licence
+
 MIT
