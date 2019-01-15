@@ -1,12 +1,10 @@
 const Redis = require('ioredis');
 
-const {
-  setClient, setPrefix, Model,
-} = require('../../lib');
+const seinRedis = require('../../lib');
 
 const redis = new Redis();
 
-class UserMockupModel extends Model {
+class UserMockupModel extends seinRedis.Model {
   constructor() {
     super();
     this.modelName = 'User';
@@ -52,12 +50,20 @@ const user2 = {
 
 const userModel = new UserMockupModel();
 
-test('Should set the client', () => {
-  setClient(redis);
+test('Redis should be connected', (done) => {
+  if (redis.status !== 'connected') {
+    redis.on('connect', () => {
+      done();
+    });
+  }
 });
 
 test('Should set the prefix', () => {
-  setPrefix('test');
+  seinRedis.setPrefix('test');
+});
+
+test('Should set the redis client', () => {
+  seinRedis.setClient(redis);
 });
 
 test('Should create two users', async () => {
