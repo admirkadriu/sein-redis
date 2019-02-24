@@ -62,8 +62,9 @@ test('Should set the prefix', () => {
   seinRedis.setPrefix('test');
 });
 
-test('Should set the redis client', () => {
-  seinRedis.setClient(redis);
+test('Should set the redis client', async (done) => {
+  await seinRedis.setClient(redis);
+  done();
 });
 
 test('Should create two users', async () => {
@@ -74,7 +75,7 @@ test('Should create two users', async () => {
 });
 
 test('Should get users with ids', async () => {
-  const [res1, res2] = await Promise.all([userModel.get('21e332e1e21'), userModel.get('d982398j2398u')]);
+  const [res1, res2] = await Promise.all([userModel.get(user1.id), userModel.get(user2.id)]);
 
   expect(res1).toEqual(user1);
   expect(res2).toEqual(user2);
@@ -82,8 +83,8 @@ test('Should get users with ids', async () => {
 
 test('Should get users with emails', async () => {
   const [res1, res2] = await Promise.all([
-    userModel.getByEmail('test1user@tests.com'),
-    userModel.getByEmail('test2user@tests.com'),
+    userModel.getByEmail(user1.email),
+    userModel.getByEmail(user2.email),
   ]);
 
   expect(res1).toEqual(user1);
@@ -98,25 +99,31 @@ test('Should get users with type 1', async () => {
 });
 
 test('Should change users email and clear old index', async () => {
-  const user = await userModel.get('21e332e1e21');
-
-  const oldEmail = user.email;
+  const oldEmail = user1.email;
   const newEmail = 'test3user@test.com';
-  user.email = newEmail;
+  user1.email = newEmail;
 
-  const setResult = await userModel.set(user);
+  const setResult = await userModel.set(user1);
   expect(setResult).toBe(true);
 
-
   const userByNewEmail = await userModel.getByEmail(newEmail);
-
-  expect(userByNewEmail).toEqual(user);
-
-
+  expect(userByNewEmail).toEqual(user1);
 
   const userByOldEmail = await userModel.getByEmail(oldEmail);
-
   expect(userByOldEmail).toEqual(null);
+});
+
+test('Should remove user', async () => {
+  await userModel.removeById(user2.id);
+
+  let userAfterRemove = await userModel.get(user2.id);
+  expect(userAfterRemove).toEqual(null);
+
+  userAfterRemove = await userModel.getByEmail(user2.email);
+  expect(userAfterRemove).toEqual(null);
+
+  let setRes  = await userModel.set(user2);// reset user2 state
+  expect(setRes).toBe(true);
 });
 
 test('Should disconnect redis', () => {
