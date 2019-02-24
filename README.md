@@ -16,7 +16,7 @@ const seinRedis = require('sein-redis');
 
 const redis = new Redis();
 
-seinRedis.setClient(redis);
+await seinRedis.setClient(redis);
 seinRedis.setPrefix('example');
   
 class UserModel extends seinRedis.Model {
