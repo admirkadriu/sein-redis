@@ -3,6 +3,9 @@
   "version": "1.0.2",
   "description": "A npm module that provides secondary indexing for Redis\",",
   "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "directories": {
     "lib": "lib"
   },

@@ -1,0 +1,14 @@
+{
+  "name": "sein-redis-cache-usage",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ioredis": "latest",
+    "mongoose": "latest",
+    "sein-redis": "latest"
+  }
+}
