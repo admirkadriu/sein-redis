@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^4.1.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.13"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
