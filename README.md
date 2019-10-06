@@ -1,5 +1,5 @@
 # sein-redis
-Secondary indexing with Redis
+Secondary indexing for Redis
 
 
 # Quick Start
