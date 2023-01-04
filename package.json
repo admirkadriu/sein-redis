@@ -30,6 +30,6 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "ioredis": "^4.3.0",
-    "jest": "^23.6.0"
+    "jest": "^29.3.1"
   }
 }
